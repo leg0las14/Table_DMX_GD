@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqeshse8vqm2h"]
+
+[ext_resource type="PackedScene" uid="uid://canucrp70fxxf" path="res://ressource/lyre.glb" id="1_qb4wj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8ybpk"]
+size = Vector3(1, 1, 0.001)
+
+[node name="lyre" instance=ExtResource("1_qb4wj")]
+
+[node name="tete" parent="." index="2"]
+transform = Transform3D(0.001, 0, 0, 0, 0, -0.001, 0, 0.001, 0, 0, 0.161565, -0.0677614)
+
+[node name="Area3D" type="Area3D" parent="." index="3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(0.190936, 0, 0, 0, 0.260153, 0, 0, 0, 192.42, 0.00372563, 0.112449, 0)
+shape = SubResource("BoxShape3D_8ybpk")
