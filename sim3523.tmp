@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhfcv772nch6l"]
+
+[ext_resource type="PackedScene" uid="uid://cqeshse8vqm2h" path="res://prefab/lyre.tscn" id="1_12afo"]
+[ext_resource type="Script" path="res://scripts/Camera3D.gd" id="2_2vn0m"]
+
+[sub_resource type="Environment" id="Environment_oobpt"]
+
+[node name="simulation" type="Node3D"]
+
+[node name="lyre" parent="." instance=ExtResource("1_12afo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11764, 0, -1.22937)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_oobpt")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.9007)
+script = ExtResource("2_2vn0m")
