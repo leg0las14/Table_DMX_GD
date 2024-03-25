@@ -4,21 +4,23 @@ class_name RtsCameraController
 
 const RAY_DISTANCE: float = 100
 
-@export var camera_move_speed: float = 10
+@export var camera_move_speed: float = 3
 @export var camera_rotate_speed: float = 0.5
 
 @export var camera_zoom_speed: float = 10
 
 @export var camera_zoom_steps: int = 5
 
-@export var camera_zoom_min: float = 0.1
-@export var camera_zoom_max: float = 6
+@export var camera_zoom_min: float = 0.05
+@export var camera_zoom_max: float = 10
 
 @onready var camera = %MainCamera
 @onready var camera_zoom_target: float = inverse_lerp(camera_zoom_min, camera_zoom_max, camera.position.z) * camera_zoom_steps
 
+var shift = false
 var mouse_pressed = false
-var last_mouse_pos: Vector2
+var last_mouse_pos_rotate: Vector2
+var last_mouse_pos_move: Vector2
 
 func _process(delta: float) -> void:
 	_move(delta)
@@ -26,22 +28,25 @@ func _process(delta: float) -> void:
 	_zoom(delta)
 
 func _move(delta: float) -> void:
-	var move_delta_z = Input.get_axis("camera_move_forward", "camera_move_backward")
-	var move_delta_x = Input.get_axis("camera_move_left", "camera_move_right")
-	var move_delta = transform.basis.z * move_delta_z + transform.basis.x * move_delta_x
-
-	global_position += move_delta * delta * camera_move_speed
+	
+	if mouse_pressed and shift:
+		var mouse_delta = last_mouse_pos_move - get_viewport().get_mouse_position()
+		var v = Vector3(mouse_delta.x, -mouse_delta.y, 0)
+		if v.x !=0 or v.y !=0:
+			translate_object_local(v.normalized()* delta * camera_move_speed)
+	last_mouse_pos_move = get_viewport().get_mouse_position()
 
 func _rotate(delta: float) -> void:
-	if mouse_pressed:
-		var mouse_delta = last_mouse_pos - get_viewport().get_mouse_position()
+	if mouse_pressed and !shift:
+
+		var mouse_delta = last_mouse_pos_rotate - get_viewport().get_mouse_position()
 		#rotate_y(mouse_delta.x * delta * camera_rotate_speed) # Rotation autour de l'axe Y (horizontal)
 		#rotate_x(mouse_delta.y * delta * camera_rotate_speed) # Rotation autour de l'axe X (vertical)
 		var v = Vector3(mouse_delta.y, mouse_delta.x, 0)
 		if v.x !=0 or v.y !=0:
 			rotate_object_local(v.normalized(), v.length() * delta * camera_rotate_speed)
 		rotation.z = 0
-	last_mouse_pos = get_viewport().get_mouse_position()
+	last_mouse_pos_rotate = get_viewport().get_mouse_position()
 
 
 
@@ -50,10 +55,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		var mouse_event = event as InputEventMouseButton
 		if mouse_event.button_index == MOUSE_BUTTON_MIDDLE and mouse_event.pressed:
 			mouse_pressed = true
-			last_mouse_pos = get_viewport().get_mouse_position()
+			last_mouse_pos_rotate = get_viewport().get_mouse_position()
+			last_mouse_pos_move = get_viewport().get_mouse_position()
 		elif mouse_event.button_index == MOUSE_BUTTON_MIDDLE and not mouse_event.pressed:
 			mouse_pressed = false
 
+	if event.is_action_pressed("shift"):
+		shift = true
+	elif event.is_action_released("shift"):
+		shift = false
 	if event.is_action_pressed("camera_zoom_in"):
 		camera_zoom_target -= 1
 	if event.is_action_pressed("camera_zoom_out"):
