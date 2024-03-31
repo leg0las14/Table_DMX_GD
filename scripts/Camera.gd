@@ -68,6 +68,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera_zoom_target -= 1
 	if event.is_action_pressed("camera_zoom_out"):
 		camera_zoom_target += 1
+	if event.is_action_pressed("axe_x"):
+		x_view()
 	camera_zoom_target = clamp(camera_zoom_target, 0, camera_zoom_steps)
 
 func _zoom(delta: float) -> void:
@@ -82,3 +84,10 @@ func raycast_from_camera() -> Dictionary:
 	var params = PhysicsRayQueryParameters3D.new()
 	params.set(rayOrigin, rayEnd)
 	return space_state.intersect_ray(params)
+
+func x_view() -> void:
+	var move:Vector3 = global_transform.origin
+	$Elevation/MainCamera.set_orthogonal(10,200,2)
+	look_at_from_position(Vector3(0,0,0.3),Vector3(0,0,0))
+	print(global_position)
+	print(global_rotation)

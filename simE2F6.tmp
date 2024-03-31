@@ -1,22 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhfcv772nch6l"]
+[gd_scene load_steps=5 format=3 uid="uid://bhfcv772nch6l"]
 
 [ext_resource type="PackedScene" uid="uid://cqeshse8vqm2h" path="res://prefab/lyre.tscn" id="1_12afo"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="2_w3j86"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mhc4i"]
-
-[sub_resource type="Sky" id="Sky_6w5fj"]
-sky_material = SubResource("ProceduralSkyMaterial_mhc4i")
-process_mode = 1
-
 [sub_resource type="Environment" id="Environment_oobpt"]
-background_mode = 2
-background_color = Color(1, 1, 1, 1)
-sky = SubResource("Sky_6w5fj")
-tonemap_mode = 2
-sdfgi_enabled = true
-sdfgi_use_occlusion = true
-volumetric_fog_density = 0.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ptocb"]
 
@@ -30,13 +17,18 @@ environment = SubResource("Environment_oobpt")
 
 [node name="CameraPivot" type="Node3D" parent="."]
 script = ExtResource("2_w3j86")
+camera_move_speed = null
+camera_rotate_speed = null
+camera_zoom_speed = null
+camera_zoom_steps = null
+camera_zoom_min = null
+camera_zoom_max = null
 
 [node name="Elevation" type="Node3D" parent="CameraPivot"]
 
 [node name="MainCamera" type="Camera3D" parent="CameraPivot/Elevation"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.999312, -0.0370798, 0, 0.0370798, 0.999312, 0, 0, 10)
-fov = 44.8
+transform = Transform3D(1, 0, 0, 0, 0.961199, 0.275855, 0, -0.275855, 0.961199, 0, 1.23723, 1.9007)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.69689, 0, 0, 0, 1, 0, 0, 0, 2.20228, 0, 0, 0)
