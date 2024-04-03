@@ -1,5 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bhfcv772nch6l"]
 
+[ext_resource type="Script" path="res://simulation.gd" id="1_4vmte"]
 [ext_resource type="PackedScene" uid="uid://cqeshse8vqm2h" path="res://prefab/lyre.tscn" id="1_12afo"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="2_w3j86"]
 
@@ -18,9 +19,8 @@ sdfgi_enabled = true
 sdfgi_use_occlusion = true
 volumetric_fog_density = 0.0
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ptocb"]
-
 [node name="simulation" type="Node3D"]
+script = ExtResource("1_4vmte")
 
 [node name="lyre" parent="." instance=ExtResource("1_12afo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11764, 0, -1.22937)
@@ -36,8 +36,10 @@ script = ExtResource("2_w3j86")
 [node name="MainCamera" type="Camera3D" parent="CameraPivot/Elevation"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.999312, -0.0370798, 0, 0.0370798, 0.999312, 0, 0, 10)
-fov = 44.8
+keep_aspect = 0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.69689, 0, 0, 0, 1, 0, 0, 0, 2.20228, 0, 0, 0)
-mesh = SubResource("PlaneMesh_ptocb")
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
