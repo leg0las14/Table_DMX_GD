@@ -8,9 +8,11 @@ var spot_list ={
 var structure_list ={
 	"truss_square_2m": "res://prefab/truss_square_2m.tscn"	
 }
+var decoration_list ={
+	"test": "res://prefab/fakeee"	
+}
 
-
-func CreateSpot (pos, type):
+func CreateNew (pos, type):
 
 	var spot = load(type)
 	var spot_ = spot.instantiate()

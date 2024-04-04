@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bs6w88opxlj76"]
+[gd_scene load_steps=2 format=3 uid="uid://bs6w88opxlj76"]
+
+[ext_resource type="Script" path="res://scripts/create_menu.gd" id="1_p4qlu"]
 
 [node name="create_menu" type="Control"]
 layout_mode = 3
@@ -8,46 +10,60 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.996599, 1.00186)
+script = ExtResource("1_p4qlu")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = 297.0
-offset_top = 83.0
-offset_right = 645.0
-offset_bottom = 574.0
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -352.0
+grow_horizontal = 0
+grow_vertical = 2
 color = Color(0.392157, 0.392157, 0.392157, 1)
 
+[node name="list_items" type="ItemList" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 52.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9653, 0.913868)
+
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 6.0
-offset_right = 349.0
-offset_bottom = 44.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -174.0
+offset_right = 174.0
+offset_bottom = 38.0
+grow_horizontal = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer"]
 layout_mode = 2
 alignment = 1
 
 [node name="spot_button" type="Button" parent="ColorRect/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Spots"
 
 [node name="structure_button" type="Button" parent="ColorRect/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Structures"
 
 [node name="decoration_button" type="Button" parent="ColorRect/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Décorations"
-
-[node name="ItemList" type="ItemList" parent="ColorRect"]
-layout_mode = 0
-offset_left = 35.1297
-offset_top = 61.731
-offset_right = 325.13
-offset_bottom = 456.731
-scale = Vector2(0.9653, 0.913868)
 
 [node name="exit_button" type="Button" parent="ColorRect"]
 layout_mode = 1
@@ -75,3 +91,9 @@ offset_right = 4.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Valider"
+
+[connection signal="pressed" from="ColorRect/MarginContainer/HBoxContainer/spot_button" to="." method="_on_spot_button_pressed"]
+[connection signal="pressed" from="ColorRect/MarginContainer/HBoxContainer/structure_button" to="." method="_on_structure_button_pressed"]
+[connection signal="pressed" from="ColorRect/MarginContainer/HBoxContainer/decoration_button" to="." method="_on_decoration_button_pressed"]
+[connection signal="pressed" from="ColorRect/exit_button" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="ColorRect/valid_button" to="." method="_on_valid_button_pressed"]
