@@ -26,7 +26,14 @@ func _ready():
 	for i in items:
 		list_items.add_item(i)
 	menu_status = MenuStatus.spot
-	
+
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		Venv.isMenu = false;
+		queue_free()
+	if event.is_action_pressed("ui_accept"):
+		valider()
+		
 func _on_spot_button_pressed():
 	spot_button.modulate = Color(1, 0, 0, 1)
 	structure_button.modulate = Color(0, 1, 0, 1)
@@ -67,14 +74,22 @@ func _on_exit_button_pressed():
 
 
 func _on_valid_button_pressed():
+	valider()
+
+func valider():
 	if list_items.is_anything_selected():
 		var item_title = list_items.get_item_text(list_items.get_selected_items()[0])
 		match menu_status:
 			MenuStatus.spot:
+				Venv.isCreatingSpot = true
+				Venv.spot = Create.spot_list[item_title]
 				Create.CreateNew(Vector3(0,0,0), Create.spot_list[item_title])
 			MenuStatus.structure:
+				Venv.isCreatingStructure = true
+				Venv.spot = Create.structure_list[item_title]
 				Create.CreateNew(Vector3(0,0,0), Create.structure_list[item_title])
 			MenuStatus.decoration:
+				Venv.spot = Create.decoration_list[item_title]
 				Create.CreateNew(Vector3(0,0,0), Create.decoration_list[item_title])
 		Venv.isMenu=false
 		queue_free()

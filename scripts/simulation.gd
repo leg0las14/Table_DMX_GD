@@ -8,8 +8,3 @@ func _input(event):
 		new_menu = load("res://menu/create_menu.tscn")
 		new_menu_instance = new_menu.instantiate()
 		add_child(new_menu_instance)
-	if event.is_action_pressed("ui_cancel"):
-		if Venv.isMenu:
-			remove_child(new_menu_instance)
-			new_menu_instance.queue_free()
-			Venv.isMenu = false
