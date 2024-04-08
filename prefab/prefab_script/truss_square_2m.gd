@@ -31,7 +31,18 @@ func _input(event):
 	if mouse_enter1 or mouse_enter2 or mouse_enter3 or mouse_enter4:
 		if event is InputEventMouseButton and event.pressed:
 			if event.button_index == MOUSE_BUTTON_LEFT:
-				print("okk")
+				if mouse_enter1:
+					CreateSpot($tube1.position, Venv.spot)
+					Venv.isCreatingSpot = false
+				if mouse_enter2:
+					CreateSpot($tube2.position, Venv.spot)
+					Venv.isCreatingSpot = false
+				if mouse_enter3:
+					CreateSpot($tube3.position, Venv.spot)
+					Venv.isCreatingSpot = false
+				if mouse_enter4:
+					CreateSpot($tube4.position, Venv.spot)
+					Venv.isCreatingSpot = false
 
 func global_input_event(camera, event, position, normal, shape_idx):
 	pass
@@ -81,3 +92,10 @@ func _on_tube_4_mouse_entered():
 func _on_tube_4_mouse_exited():
 	$tube4.visible = false
 	mouse_enter4 = false
+
+
+func CreateSpot (pos, type):
+	var spot = load(type)
+	var spot_ = spot.instantiate()
+	spot_.transform.origin = pos
+	get_tree().get_root().add_child(spot_)

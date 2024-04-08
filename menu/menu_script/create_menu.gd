@@ -83,13 +83,13 @@ func valider():
 			MenuStatus.spot:
 				Venv.isCreatingSpot = true
 				Venv.spot = Create.spot_list[item_title]
-				Create.CreateNew(Vector3(0,0,0), Create.spot_list[item_title])
+				#Create.CreateNew(Vector3(0,0,0), Create.spot_list[item_title])
 			MenuStatus.structure:
 				Venv.isCreatingStructure = true
 				Venv.spot = Create.structure_list[item_title]
 				Create.CreateNew(Vector3(0,0,0), Create.structure_list[item_title])
 			MenuStatus.decoration:
 				Venv.spot = Create.decoration_list[item_title]
-				Create.CreateNew(Vector3(0,0,0), Create.decoration_list[item_title])
+				#Create.CreateNew(Vector3(0,0,0), Create.decoration_list[item_title])
 		Venv.isMenu=false
 		queue_free()

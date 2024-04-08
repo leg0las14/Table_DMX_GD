@@ -3,8 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c0a6ik3xo5hbe" path="res://ressource/truss.glb" id="1_p8lur"]
 [ext_resource type="Script" path="res://prefab/prefab_script/truss_square_2m.gd" id="2_4jakl"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_quchf"]
-size = Vector3(0.312259, 1.95596, 0.320933)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_i0nru"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ayipb"]
 height = 2.01156
@@ -24,7 +23,7 @@ script = ExtResource("2_4jakl")
 [node name="global" type="StaticBody3D" parent="Sketchfab_model/Collada visual scene group/Truss/defaultMaterial" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/Collada visual scene group/Truss/defaultMaterial/global" index="0"]
-shape = SubResource("BoxShape3D_quchf")
+shape = SubResource("ConvexPolygonShape3D_i0nru")
 
 [node name="tube1" type="StaticBody3D" parent="Sketchfab_model/Collada visual scene group/Truss/defaultMaterial" index="1"]
 
