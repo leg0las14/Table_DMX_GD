@@ -1,7 +1,7 @@
 extends Node
 
-#liste des spots :
 
+#liste des spots :
 var spot_list ={
 	"lyre": "res://prefab/lyre.tscn"
 }

@@ -13,7 +13,7 @@ var mouse_enter2 = false
 var mouse_enter3 = false
 var mouse_enter4 = false
 
-var spot = {}
+var spot = []
 
 
 func _ready():
@@ -95,7 +95,10 @@ func _on_tube_4_mouse_exited():
 
 
 func CreateSpot (pos, type):
-	var spot = load(type)
-	var spot_ = spot.instantiate()
-	spot_.transform.origin = pos
-	get_tree().get_root().add_child(spot_)
+	spot.append(Spot.new())
+	var size = spot.size()-1
+	spot[size].create(type, pos, get_tree().get_root())
+	print(spot[size].get_parent_())
+	print(spot[size].get_pos_())
+	print(spot[size].get_path_())
+	spot[size].translate(1,1,1)
