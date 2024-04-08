@@ -97,8 +97,7 @@ func _on_tube_4_mouse_exited():
 func CreateSpot (pos, type):
 	spot.append(Spot.new())
 	var size = spot.size()-1
-	spot[size].create(type, pos, get_tree().get_root())
-	print(spot[size].get_parent_())
-	print(spot[size].get_pos_())
-	print(spot[size].get_path_())
-	spot[size].translate(1,1,1)
+	spot[size].create(type, pos, get_tree().get_root(), 1.5708,0,0)
+
+func _process(delta):
+	rotate_x(0.1*delta)

@@ -40,8 +40,6 @@ func _rotate(delta: float) -> void:
 	if mouse_pressed and !shift:
 
 		var mouse_delta = last_mouse_pos_rotate - get_viewport().get_mouse_position()
-		#rotate_y(mouse_delta.x * delta * camera_rotate_speed) # Rotation autour de l'axe Y (horizontal)
-		#rotate_x(mouse_delta.y * delta * camera_rotate_speed) # Rotation autour de l'axe X (vertical)
 		var v = Vector3(mouse_delta.y, mouse_delta.x, 0)
 		if v.x !=0 or v.y !=0:
 			rotate_object_local(v.normalized(), v.length() * delta * camera_rotate_speed)

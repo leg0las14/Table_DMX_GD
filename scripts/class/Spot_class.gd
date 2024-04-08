@@ -6,18 +6,20 @@ var parent
 var pos
 var instance
 
-func _ready():
-	print("new spot create")
-	
-func create(path_, pos_, parent_):
+
+func create(path_, pos_, parent_, x, y, z):
 	path = path_
 	parent = parent_
 	pos = pos_
 	var spot = load(path)
-	var spot_ = spot.instantiate()
-	instance = spot_
-	spot_.transform.origin = pos
-	parent.add_child(spot_)
+	instance = spot.instantiate()
+	instance.transform.origin = pos
+	instance.rotate_x(x)
+	instance.rotate_y(y)
+	instance.rotate_z(z)
+	parent.add_child(instance)
+	print('parent du spot :', instance.get_parent())
+	print('root : ', get_parent_())
 
 func get_pos_():
 	return instance.global_transform.origin
