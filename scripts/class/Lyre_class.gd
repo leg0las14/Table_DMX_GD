@@ -1,4 +1,5 @@
-class_name Spot
+class_name Lyre
+
 extends Node
 
 var path

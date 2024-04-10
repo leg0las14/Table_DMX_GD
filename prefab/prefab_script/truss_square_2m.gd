@@ -95,7 +95,7 @@ func _on_tube_4_mouse_exited():
 
 
 func CreateSpot (pos, type):
-	spot.append(Spot.new())
+	spot.append(Lyre.new())
 	var size = spot.size()-1
 	spot[size].create(type, pos, get_tree().get_root(), 1.5708,0,0)
 
