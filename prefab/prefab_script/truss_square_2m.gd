@@ -97,7 +97,7 @@ func _on_tube_4_mouse_exited():
 func CreateSpot (pos, type):
 	spot.append(Lyre.new())
 	var size = spot.size()-1
-	spot[size].create(type, pos, get_tree().get_root(), 1.5708,0,0)
+	spot[size].create(type, pos, $"Sketchfab_model/Collada visual scene group/Truss", 1.5708,0,0)
 
 func _process(delta):
 	rotate_x(0.1*delta)

@@ -19,8 +19,6 @@ func create(path_, pos_, parent_, x, y, z):
 	instance.rotate_y(y)
 	instance.rotate_z(z)
 	parent.add_child(instance)
-	print('parent du spot :', instance.get_parent())
-	print('root : ', get_parent_())
 
 func get_pos_():
 	return instance.global_transform.origin
